@@ -5,6 +5,10 @@ import joblib
 import pandas as pd
 from pathlib import Path
 import io
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+from fastapi import Request
+
 
 # Chemins absolus basés sur le répertoire du fichier
 BASE_DIR = Path(__file__).parent.parent
@@ -18,7 +22,9 @@ pipeline = joblib.load(str(model_path))
 SEUIL_OPTIMAL = joblib.load(str(seuil_path)) if seuil_path.exists() else 0.5
 
 # Création de l'application FastAPI
-app = FastAPI(title="API Prédiction Risque de Défaut")
+app = FastAPI(title="API de Prédiction du Risque de Défaut")
+
+templates = Jinja2Templates(directory="templates")
 
 # Définition du schéma d'entrée
 class ClientData(BaseModel):
@@ -53,6 +59,10 @@ def predict_client(features_dict):
     }
 
 # Endpoint API
+@app.get("/", response_class=HTMLResponse)
+def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
 @app.post("/predict")
 def predict(data: ClientData):
     data_dict = data.dict()
