@@ -1,0 +1,10 @@
+# Ignore a single file at repo root:
+/pkg.txt
+/test.json
+
+# Ignore a file by name anywhere in the repo:
+preprocessing.py
+
+# Ignore a specific file in a subdirectory:
+/data/dataset_risque_defaut_prepared.csv
+/notebooks/02_prepared.ipynb
