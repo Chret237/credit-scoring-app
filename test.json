@@ -1,0 +1,285 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "API Prédiction Risque de Défaut",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/predict": {
+            "post": {
+                "summary": "Predict",
+                "operationId": "predict_predict_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ClientData"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/predict_file": {
+            "post": {
+                "summary": "Predict File",
+                "description": "Endpoint pour scorer un fichier CSV complet.\nRetourne un CSV contenant les probabilités et les prédictions.",
+                "operationId": "predict_file_predict_file_post",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_predict_file_predict_file_post"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/predict_file_download": {
+            "post": {
+                "summary": "Predict File Download",
+                "description": "Endpoint pour scorer un CSV et retourner un fichier CSV téléchargeable.",
+                "operationId": "predict_file_download_predict_file_download_post",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_predict_file_download_predict_file_download_post"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Body_predict_file_download_predict_file_download_post": {
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "format": "binary",
+                        "title": "File"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "file"
+                ],
+                "title": "Body_predict_file_download_predict_file_download_post"
+            },
+            "Body_predict_file_predict_file_post": {
+                "properties": {
+                    "file": {
+                        "type": "string",
+                        "format": "binary",
+                        "title": "File"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "file"
+                ],
+                "title": "Body_predict_file_predict_file_post"
+            },
+            "ClientData": {
+                "properties": {
+                    "age": {
+                        "type": "number",
+                        "title": "Age"
+                    },
+                    "sexe": {
+                        "type": "string",
+                        "title": "Sexe"
+                    },
+                    "situation_familiale": {
+                        "type": "string",
+                        "title": "Situation Familiale"
+                    },
+                    "revenu_mensuel": {
+                        "type": "number",
+                        "title": "Revenu Mensuel"
+                    },
+                    "type_contrat_travail": {
+                        "type": "string",
+                        "title": "Type Contrat Travail"
+                    },
+                    "anciennete_travail_mois": {
+                        "type": "integer",
+                        "title": "Anciennete Travail Mois"
+                    },
+                    "montant_credit": {
+                        "type": "number",
+                        "title": "Montant Credit"
+                    },
+                    "duree_mois": {
+                        "type": "integer",
+                        "title": "Duree Mois"
+                    },
+                    "taux_interet": {
+                        "type": "number",
+                        "title": "Taux Interet"
+                    },
+                    "type_credit": {
+                        "type": "string",
+                        "title": "Type Credit"
+                    },
+                    "nb_retards_30j": {
+                        "type": "integer",
+                        "title": "Nb Retards 30J"
+                    },
+                    "nb_retards_60j": {
+                        "type": "integer",
+                        "title": "Nb Retards 60J"
+                    },
+                    "nb_retards_90j": {
+                        "type": "integer",
+                        "title": "Nb Retards 90J"
+                    },
+                    "taux_endettement": {
+                        "type": "number",
+                        "title": "Taux Endettement"
+                    },
+                    "ratio_dette_revenu": {
+                        "type": "number",
+                        "title": "Ratio Dette Revenu"
+                    },
+                    "defaut": {
+                        "type": "integer",
+                        "title": "Defaut"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "age",
+                    "sexe",
+                    "situation_familiale",
+                    "revenu_mensuel",
+                    "type_contrat_travail",
+                    "anciennete_travail_mois",
+                    "montant_credit",
+                    "duree_mois",
+                    "taux_interet",
+                    "type_credit",
+                    "nb_retards_30j",
+                    "nb_retards_60j",
+                    "nb_retards_90j",
+                    "taux_endettement",
+                    "ratio_dette_revenu",
+                    "defaut"
+                ],
+                "title": "ClientData"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            }
+        }
+    }
+}
