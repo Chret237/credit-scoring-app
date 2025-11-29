@@ -1,6 +1,7 @@
 # Ignore a single file at repo root:
 /pkg.txt
 /test.json
+/env
 
 # Ignore a file by name anywhere in the repo:
 preprocessing.py

@@ -2,7 +2,7 @@
 
 DEFAULT RISK PREDICTION APPLICATION FOR MICROFINANCE INSTITUTIONS.
 
-## Lancer et tester l'API
+## Lancer et tester l'application
 
 Prérequis : Python 3.8+, git.
 
@@ -46,6 +46,12 @@ pip install -r requirements.txt
 uvicorn src.api:app --reload
 ```
 
-6 Ouvrir l'API dans le navigateur
+6 Lancer L'application
 
-- Accéder à : <http://127.0.0.1:8000/>
+```bash
+streamlit run app.py
+```
+
+7 Ouvrir l'application dans le navigateur
+
+- Accéder à : <http://localhost:8501//>
