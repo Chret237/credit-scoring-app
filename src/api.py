@@ -43,8 +43,6 @@ class ClientData(BaseModel):
   nb_retards_90j: int
   taux_endettement: float
   ratio_dette_revenu: float
-  defaut: int
-
 
 # Fonction prédiction
 def predict_client(features_dict):
