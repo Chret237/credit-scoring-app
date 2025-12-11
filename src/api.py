@@ -8,6 +8,7 @@ import io
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi import Request
+from fastapi.middleware.cors import CORSMiddleware
 
 
 # Chemins absolus basés sur le répertoire du fichier
@@ -43,6 +44,20 @@ class ClientData(BaseModel):
   nb_retards_90j: int
   taux_endettement: float
   ratio_dette_revenu: float
+
+# Autoriser ton frontend (React sur Vite par exemple)
+origins = [
+    "http://localhost:5173",  # port de Vite par défaut
+    "http://127.0.0.1:5173"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],  # autorise POST, GET, OPTIONS...
+    allow_headers=["*"],
+)
 
 # Fonction prédiction
 def predict_client(features_dict):
