@@ -2,7 +2,6 @@
 /pkg.txt
 /test.json
 /env
-/historique.db
 /stats_cache.json
 
 # Ignore a file by name anywhere in the repo:
