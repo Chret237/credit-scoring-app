@@ -312,5 +312,18 @@ def get_cached_stats():
     except:
         return {"error": "stats_cache.json introuvable"}
 
+@app.get("/historique")
+def get_historique():
+    conn = sqlite3.connect("historique.db")
+    df = pd.read_sql_query("SELECT * FROM predictions ORDER BY date_prediction DESC", conn)
+    conn.close()
+
+    # Créer une colonne "classe" avec seulement Faible ou Élevé
+    df["classe"] = df["proba"].apply(lambda x: "Faible" if x < 0.5 else "Élevé")
+
+    # Renvoie les colonnes utiles
+    result = df[["proba", "classe", "date_prediction", "prediction"]].to_dict(orient="records")
+    return result
+
 init_db()
 compute_all_stats()
