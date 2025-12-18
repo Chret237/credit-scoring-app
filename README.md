@@ -97,5 +97,4 @@ Streamlit s'exécutera par défaut sur `http://localhost:8501`.
 - Assurez-vous que Python, Node.js et npm sont installés et dans le PATH.
 - Si le port est occupé, changez le port dans la commande (ex. `--port 8001` pour Uvicorn) ou fermez l'application qui utilise le port.
 - Pour Windows PowerShell, si l'activation du venv échoue : exécutez `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` puis relancez `.venv\\Scripts\\Activate.ps1`.
-
-Si vous souhaitez, je peux ajouter des instructions de configuration d'URL/API côté frontend (fichier `.env` ou variable d'environnement) ou un script PowerShell pour lancer les trois services simultanément.
+- 
