@@ -13,3 +13,4 @@ train_model.py
 /data/dataset_risque_defaut_prepared.csv
 /notebooks/02_prepared.ipynb
 /pages/*
+/dashboard.jpg
