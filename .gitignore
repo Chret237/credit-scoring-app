@@ -13,3 +13,14 @@ train_model.py
 /notebooks/02_prepared.ipynb
 /pages/*
 /dashboard.jpg
+
+# Ignore cache and temporary files:
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.cache/
+.ipynb_checkpoints/
